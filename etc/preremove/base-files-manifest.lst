@@ -4,4 +4,5 @@ etc/bash.bashrc
 etc/skel/.bashrc
 etc/skel/.inputrc
 etc/skel/.bash_profile
+etc/skel/.bash_logout
 etc/profile
