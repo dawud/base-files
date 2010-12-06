@@ -12,8 +12,8 @@ WINSYS32HOME="$(/bin/cygpath -S -w)"
 WINETC="${WINSYS32HOME}\\drivers\\etc"
 
 if [ ! -d "${WINETC}" ]; then
-  /usr/bin/printf "Directory ${WINETC} does not exist; exiting\n" >&2
-  /usr/bin/printf "If directory name is garbage you need to update your cygwin package\n" >&2
+  echo "Directory ${WINETC} does not exist; exiting" >&2
+  echo "If directory name is garbage you need to update your cygwin package" >&2
   exit 1
 fi
 
@@ -26,5 +26,7 @@ do
     /usr/bin/ln -s -v "${WFILE}" "/etc/${mketc}"
   fi
 done
+
+/usr/bin/chmod 1777 /tmp 2>/dev/null
 
 exit 0
