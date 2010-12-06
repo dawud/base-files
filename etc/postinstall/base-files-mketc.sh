@@ -14,7 +14,7 @@ WINETC="${WINSYS32HOME}\\drivers\\etc"
 if [ ! -d "${WINETC}" ]; then
   /usr/bin/printf "Directory ${WINETC} does not exist; exiting\n" >&2
   /usr/bin/printf "If directory name is garbage you need to update your cygwin package\n" >&2
-  exit 0
+  exit 1
 fi
 
 for mketc in ${FILES}
@@ -26,3 +26,5 @@ do
     /usr/bin/ln -s -v "${WFILE}" "/etc/${mketc}"
   fi
 done
+
+exit 0
