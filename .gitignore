@@ -1,2 +1,4 @@
 *.swp
 send.email.patches/
+*~
+*.orig
