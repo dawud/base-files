@@ -1,16 +1,18 @@
 #!/bin/sh
-# base-files version 3.9-3
+# base-files version 4.0-1
 
-manifest=/etc/preremove/base-files-manifest.lst
+MANIFEST="/etc/preremove/base-files-manifest.lst"
 
-[ -f $manifest ] || (echo "Unable to find manifest file" && exit 0)
+[ -f ${MANIFEST} ] || (/usr/bin/printf "Unable to find manifest file.\n" && exit 1)
 
-echo "*** Removing unmodified base files."
-echo "*** These will be updated by the postinstall script."
-echo "*** Please wait."
+/usr/bin/printf "*** Removing unmodified base files.\n"
+/usr/bin/printf "*** These will be updated by the postinstall script.\n"
+/usr/bin/printf "*** Please wait.\n"
 
 while read f; do
-  /bin/cmp -s "/${f}" "/etc/defaults/${f}" && \
-    (echo /$f hasn\'t been modified, it will be updated ; \
-     /bin/rm -f "/${f}")
-done < ${manifest}
+  /usr/bin/cmp -s "/${f}" "/etc/defaults/${f}" && \
+    (/usr/bin/printf "/${f} hasn't been modified, it will be updated.\n" ; \
+     /usr/bin/rm -f "/${f}")
+done < ${MANIFEST}
+
+exit 0
