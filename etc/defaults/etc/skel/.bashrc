@@ -1,10 +1,10 @@
 # base-files version 4.0-1
 # ~/.bashrc: executed by bash(1) for interactive non-login shells.
 
-# To pick up the latest recommended .bashrc content,
-# look in /etc/defaults/etc/skel/.bashrc
+# The latest version as installed by the Cygwin Setup program can
+# always be found at /etc/defaults/etc/skel/.bashrc
 
-# Modifying /etc/skel/.bashrc directly will prevent
+# Modifying /etc/defaults/skel/.bashrc directly will prevent
 # setup from updating it.
 
 # The copy in your home directory (~/.bashrc) is yours, please

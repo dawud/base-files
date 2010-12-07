@@ -1,8 +1,8 @@
 # base-files version 4.0-1
 # ~/.bash_profile: executed by bash(1) for interactive login shells.
 
-# To pick up the latest recommended .bash_profile content,
-# look in /etc/defaults/etc/skel/.bash_profile
+# The latest version as installed by the Cygwin Setup program can
+# always be found at /etc/defaults/etc/skel/.bash_profile
 
 # Modifying /etc/defaults/skel/.bash_profile directly will prevent
 # setup from updating it.

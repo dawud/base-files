@@ -1,8 +1,8 @@
 # base-files version 4.0-1
 # ~/.bash_logout: executed by bash(1) when login shell exits.
 
-# To pick up the latest recommended .bash_profile content,
-# look in /etc/defaults/etc/skel/.bash_logout
+# The latest version as installed by the Cygwin Setup program can
+# always be found at /etc/defaults/etc/skel/.bash_logout
 
 # Modifying /etc/defaults/skel/.bash_logout directly will prevent
 # setup from updating it.
