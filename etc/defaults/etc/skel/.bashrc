@@ -15,22 +15,16 @@
 
 # User dependent .bashrc file
 
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# source the system wide bashrc if it exists
+if [ -e "/etc/bash.bashrc" ] ; then
+  source "/etc/bash.bashrc"
+fi
+
 # Environment Variables
 # #####################
-
-# TMP and TEMP are defined in the Windows environment.  Leaving
-# them set to the default Windows temporary directory can have
-# unexpected consequences.
-unset TMP
-unset TEMP
-
-# Alternatively, set them to the Cygwin temporary directory
-# or to any other tmp directory of your choice
-# export TMP=/tmp
-# export TEMP=/tmp
-
-# Or use TMPDIR instead
-# export TMPDIR=/tmp
 
 # Shell Options
 # #############
@@ -68,18 +62,28 @@ unset TEMP
 # Define to avoid flattening internal contents of tar files
 # COMP_TAR_INTERNAL_PATHS=1
 
-# If this shell is interactive, turn on programmable completion enhancements.
+# To turn on programmable completion enhancements, check /etc/bash.bashrc,
+# ask your admin to do it, or do it yourself here. 
 # Any completions you add in ~/.bash_completion are sourced last.
-# case $- in
-#   *i*) [[ -f /etc/bash_completion ]] && . /etc/bash_completion ;;
-# esac
-
+#
+# Check that we haven't already been sourced.
+# [ -z "$BASH_VERSION" -o -n "$BASH_COMPLETION" ] && return
+#
+# Check for recent enough version of bash.
+# bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
+# if [ $bmajor -gt 3 ] || [ $bmajor -eq 3 -a $bminor -ge 2 ]; then
+#   if [ -r /etc/bash_completion ]; then
+#      # Source completion code.
+#      . /etc/bash_completion
+#   fi
+# fi
+# unset bash bmajor bminor
 
 # History Options
 # ###############
 
 # Don't put duplicate lines in the history.
-# export HISTCONTROL="ignoredups"
+# export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
@@ -90,9 +94,11 @@ unset TEMP
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
 
-
 # Aliases
 # #######
+if [ -f "${HOME}/.bash_aliases" ]; then
+  source "${HOME}/.bash_aliases"
+fi
 
 # Some example alias instructions
 # If these are enabled they will be used instead of any instructions

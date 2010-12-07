@@ -1,26 +1,28 @@
 # base-files version 4.0-1
-
-# WARNING
-#
-# IF THIS FILE IS MODIFIED IT WILL NOT BE UPDATED BY THE CYGWIN
-# SETUP PROGRAM.  IT BECOMES YOUR RESPONSIBILITY.
+# /etc/bash.bashrc: executed by bash(1) for interactive non-login shells.
 
 # The latest version as installed by the Cygwin Setup program can
 # always be found at /etc/defaults/etc/profile
 
-# Some resources...
+# Modifying /etc/defaults/profile directly will prevent
+# setup from updating it.
 
+# System-wide profile file
+
+# Some resources...
 # Customizing Your Shell: http://www.dsl.org/cookbook/cookbook_5.html#SEC69
 # Consistent BackSpace and Delete Configuration:
 #   http://www.ibb.net/~anne/keyboard.html
 # The Linux Documentation Project: http://www.tldp.org/
 # The Linux Cookbook: http://www.tldp.org/LDP/linuxcookbook/html/
 
-# Modifying these default path settings will depend on your shell
-# Refer to your shell's man page to learn more about startup files
 # Setup some default paths. Note that this order will allow user installed
-# software to override 'system' software
-
+# software to override 'system' software.
+# Modifying these default path settings can be done in complementary ways:
+#  a) system-wide
+#  b) per-user
+#  c) per shell
+# To learn more about startup files, refer to your shell's man page.
 export PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
 export MANPATH="/usr/local/man:/usr/share/man:/usr/man:${MANPATH}"
 export INFOPATH="/usr/local/info:/usr/share/info:/usr/info:${INFOPATH}"
@@ -33,126 +35,53 @@ export USER="$(id -un)"
 #  2) from /etc/passwd, if there is an entry with a non empty directory field
 #  3) from HOMEDRIVE/HOMEPATH
 #  4) / (root)
-
 # If the home directory doesn't exist, create it.
 if [ ! -d "${HOME}" ]; then
 	if mkdir -p "${HOME}"; then
 		echo "Copying skeleton files."
-		echo "These files are for the user to personalise their cygwin experience."
+		echo "These files are for the users to personalise their cygwin experience."
 		echo
 		echo "They will never be overwritten nor automatically updated."
 		echo
 		cd /etc/skel
 		/bin/find . -type f | while read f; do
-                	fDest=`echo ${f} | sed -e 's/^\.//g'`
-                	if [ ! -e "${HOME}${fDest}" -a ! -L "${HOME}${fDest}" ]; then
-                        	/usr/bin/install -D -p -v "${f}" "${HOME}/${fDest}"
-                	fi
+      fDest=$(echo ${f} | sed -e 's/^\.//g')
+      if [ ! -e "${HOME}${fDest}" -a ! -L "${HOME}${fDest}" ]; then
+      	/usr/bin/install -D -p -v "${f}" "${HOME}/${fDest}"
+      fi
 		done
 	else
-        	echo "${HOME} could not be created."
-
-		  { [ -d "${TEMP}" ] && HOME="${TEMP}"; } ||
-			{ [ -d "${TMP}" ] && HOME="${TMP}"; } ||
-			{ [ -d /tmp ] && HOME=/tmp; } ||
-			HOME=/
-
+    echo "${HOME} could not be created."
+		{ [ -d "${TEMP}" ] && HOME="${TEMP}"; } ||
+		{ [ -d "${TMP}" ] && HOME="${TMP}"; } ||
+		{ [ -d /tmp ] && HOME=/tmp; } ||
+		HOME=/
 		echo "Setting HOME to ${HOME}."
 	fi
+elif [ ! -O "$HOME" -a "${HOME#/home/}" != "${HOME}" ]
+  echo "WARNING: Your home directory at ${HOME} is owned by someone else!"
+  echo "WARNING: This doesn't prevent the shell from starting, but some "
+  echo "WARNING: programs expect your ${HOME} to belong to you."
+  echo "WARNING: Please consider correcting this issue."
 fi
  
-#chmod 1777 /tmp 2>/dev/null
+# Set a minumum PS1 prompt, and let specific shells startup scripts alter it.
+export PS1="$ "
 
 # It is recommended that cvs uses ssh for it's remote shell environment
-export CVS_RSH=/bin/ssh
+export CVS_RSH="/bin/ssh"
 
 # Patches to Cygwin always appreciated ;)
 # export CVSROOT=:pserver:anoncvs@sources.redhat.com:/cvs/src
 
-# Shell dependent settings {{{
-#case "`echo "_$0" | /usr/bin/tr '[:upper:]' '[:lower:]' | /usr/bin/sed -e 's/^_//'`" in
-#bash     | -bash     | */bash | \
-#bash.exe | -bash.exe | */bash.exe )
-#	# Set a HOSTNAME variable
-#	HOSTNAME=`hostname`
-#	export HOSTNAME
-#
-#	# Set a default prompt of: user@host and current_directory
-#	PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
-#	;;
-#ksh*     | -ksh*     | */ksh* | \
-#ksh*.exe | -ksh*.exe | */ksh*.exe )
-#	# Set a HOSTNAME variable
-#	typeset -l HOSTNAME
-#
-#	# Set a default prompt of: user@host and current_directory
-#	PS1='^[]0;${PWD}^G
-#^[[32m${USER}@${HOSTNAME} ^[[33m${PWD}^[[0m
-#$ '
-#	;;
-#zsh*     | -zsh*     | */zsh* | \
-#zsh*.exe | -zsh*.exe | */zsh*.exe )
-#	# Set a default prompt of: user@host, a command counter, and current_directory
-#	PS1='(%n@%m)[%h] %~ %% '
-#	
-#	# Set SHELL if not set
-#	if [ ! -z "${ZSH_NAME}" -a -z "${SHELL}" ]; then
-#		SHELL="/bin/zsh"
-#		export SHELL	
-#	fi
-#	;;
-#sh     | -sh     | */sh | \
-#sh.exe | -sh.exe | */sh.exe )
-#	# Set a simple prompt
-#	PS1='$ '
-#	;;
-#* )
-#	# Sorry, this shell has no defaults in /etc/profile,
-#	#  feel free to add your own.
-#
-#	# If you have some recommendations for what these defaults
-#	#  should be, please contact cygwin@cygwin.com with the
-#	#  shell details and what you would like added.
-#
-#	# Thanks
-#	
-#	PS1='$ '
-#	;;
-#esac
-# }}}
-
-# Set a minumum PS1 prompt, and let specific shells startup scripts alter it.
-export PS1='$ '
-
-# Run all of the profile.d scripts {{{
-# Note that these are supplied by separate packages
-# Ascending alphanumerical order enforced
-#if [ -d "/etc/profile.d" ]; then
-#	while read f; do
-#		if [ -f "${f}" ]; then
-#			. "${f}"
-#		fi
-#	done <<- EOF
-#	`/bin/find -L /etc/profile.d -type f -iname '*.sh' -or -iname '*.zsh' | LC_ALL=C sort`
-#	EOF
-#fi
-# }}}
-# profile.d scripts should be called by statup scripts.
-# i.e. bash shouldn't source a *.zsh
-
-# Uncomment to use the terminal colours set in DIR_COLOR
-# eval "`dircolors -b /etc/DIR_COLORS`"
-# This goes to startup /etc/*rc
+# Define default printer
+read -r < PRINTER '/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
+export PRINTER=${PRINTER%%,*}
 
 # Default to removing the write permission for group and other
 #  (files normally created with mode 777 become 755; files created with
 #  mode 666 become 644)
 umask 022
-
-# Define default printer
-# Daniel Colascione (credit + mail ref.)
-read -r < PRINTER '/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
-export PRINTER=${PRINTER%%,*}
 
 # Make sure we start in home unless invoked by CHERE
 if [ ! -z "${CHERE_INVOKING}" ]; then
