@@ -1,10 +1,10 @@
 # base-files version 4.0-1
-# /etc/bash.bashrc: executed by bash(1) for interactive non-login shells.
+# /etc/bash.bashrc: executed by bash(1) for interactive shells.
 
 # The latest version as installed by the Cygwin Setup program can
 # always be found at /etc/defaults/etc/bash.bashrc
 
-# Modifying /etc/defaults/bash.bashrc directly will prevent
+# Modifying /etc/bash.bashrc directly will prevent
 # setup from updating it.
 
 # System-wide .bashrc file

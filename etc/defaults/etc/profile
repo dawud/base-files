@@ -1,10 +1,10 @@
 # base-files version 4.0-1
-# /etc/bash.bashrc: executed by bash(1) for interactive non-login shells.
+# /etc/profile: executed by bash(1) for login shells.
 
 # The latest version as installed by the Cygwin Setup program can
 # always be found at /etc/defaults/etc/profile
 
-# Modifying /etc/defaults/profile directly will prevent
+# Modifying /etc/profile directly will prevent
 # setup from updating it.
 
 # System-wide profile file

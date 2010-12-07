@@ -1,10 +1,10 @@
 # base-files version 4.0-1
-# ~/.bash_profile: executed by bash(1) for interactive login shells.
+# ~/.bash_profile: executed by bash(1) for login shells.
 
 # The latest version as installed by the Cygwin Setup program can
 # always be found at /etc/defaults/etc/skel/.bash_profile
 
-# Modifying /etc/defaults/skel/.bash_profile directly will prevent
+# Modifying /etc/skel/.bash_profile directly will prevent
 # setup from updating it.
 
 # The copy in your home directory (~/.bash_profile) is yours, please
@@ -12,11 +12,6 @@
 # environment to your liking.  If you feel a change
 # would be benifitial to all, please feel free to send
 # a patch to the cygwin mailing list.
-
-# source the system wide bashrc if it exists
-if [ -e "/etc/bash.bashrc" ] ; then
-  source "/etc/bash.bashrc"
-fi
 
 # source the users bashrc if it exists
 if [ -e "${HOME}/.bashrc" ] ; then

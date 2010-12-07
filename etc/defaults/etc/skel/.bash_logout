@@ -4,7 +4,7 @@
 # The latest version as installed by the Cygwin Setup program can
 # always be found at /etc/defaults/etc/skel/.bash_logout
 
-# Modifying /etc/defaults/skel/.bash_logout directly will prevent
+# Modifying /etc/skel/.bash_logout directly will prevent
 # setup from updating it.
 
 # The copy in your home directory (~/.bash_logout) is yours, please
