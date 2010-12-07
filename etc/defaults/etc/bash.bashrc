@@ -22,7 +22,7 @@ unset TEMP
 # export TMP="/tmp"
 # export TEMP="/tmp"
 
-# Define HOSTNAME
+# Set a HOSTNAME variable
 export HOSTNAME=$(hostname)
 
 # Set a default prompt of: user@host and current_directory
