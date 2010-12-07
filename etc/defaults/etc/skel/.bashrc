@@ -1,4 +1,5 @@
-# base-files version 3.9-3
+# base-files version 4.0-1
+# ~/.bashrc: executed by bash(1) for interactive non-login shells.
 
 # To pick up the latest recommended .bashrc content,
 # look in /etc/defaults/etc/skel/.bashrc
