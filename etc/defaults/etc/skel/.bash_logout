@@ -4,7 +4,7 @@
 # To pick up the latest recommended .bash_profile content,
 # look in /etc/defaults/etc/skel/.bash_logout
 
-# Modifying /etc/skel/.bash_logout directly will prevent
+# Modifying /etc/defaults/skel/.bash_logout directly will prevent
 # setup from updating it.
 
 # The copy in your home directory (~/.bash_logout) is yours, please

@@ -4,7 +4,7 @@
 # To pick up the latest recommended .bash_profile content,
 # look in /etc/defaults/etc/skel/.bash_profile
 
-# Modifying /etc/skel/.bash_profile directly will prevent
+# Modifying /etc/defaults/skel/.bash_profile directly will prevent
 # setup from updating it.
 
 # The copy in your home directory (~/.bash_profile) is yours, please
