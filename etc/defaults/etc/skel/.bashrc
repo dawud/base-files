@@ -121,15 +121,20 @@ fi
 
 # Umask
 #
-# Set a more restrictive umask: i.e. no perms for group or others.
+# /etc/profile sets 022, removing write perms to group + others.
+# Set a more restrictive umask: i.e. no exec perms for others.
+# umask 027
+# Paranoid: neither group nor others have any perms.
 # umask 077
 
 # Functions
 #
-# Some example functions
+# Some example functions:
 #
 # function settitle() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
 #
+# This function defines a 'cd' replacement function capable of keeping, 
+# displaying and accessing history of visited directories, up to 10 entries.
 # acd_func 1.0.5, 10-nov-2004
 # Petar Marinov, http:/geocities.com/h2428, this is public domain
 # cd_func ()
