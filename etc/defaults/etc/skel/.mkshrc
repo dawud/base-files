@@ -1,0 +1,29 @@
+# base-files version 4.0-1
+#
+# The latest version as installed by the Cygwin Setup program can
+# always be found at /etc/defaults/etc/skel/.mkshrc
+#
+# Modifying /etc/skel/.mkshrc directly will prevent
+# setup from updating it.
+#
+# The copy in your home directory (~/.mkshrc) is yours, please
+# feel free to customise it to create a shell
+# environment to your liking.  If you feel a change
+# would be benificial to all, please feel free to send
+# a patch to the cygwin mailing list.
+#
+# User dependent .mkshrc file
+#
+# check if this is really mksh  # {((
+case $KSH_VERSION in
+*MIRBSD\ KSH*) ;;
+*) echo "Arghs!"; return 0 ;;
+esac                            # }
+#
+# source the system-wide mkshrc file
+[[ -s /etc/mkshrc ]] && . /etc/mkshrc
+#
+# put your local alias/function definitions, patches, etc. here
+#
+#
+: make sure this is the last line, to ensure a good return code
