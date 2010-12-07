@@ -3,6 +3,7 @@
 
 #--
 # Create symbolic links from some /etc files to the Windows equivalents
+# Set perms to /tmp directory
 #--
 
 FILES="hosts protocols services networks"
