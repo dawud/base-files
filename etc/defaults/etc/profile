@@ -61,7 +61,7 @@ if [ ! -d "${HOME}" ]; then
 elif [ ! -O "$HOME" -a "${HOME#/home/}" != "${HOME}" ]
   echo "WARNING: Your home directory at ${HOME} is owned by someone else!"
   echo "WARNING: This doesn't prevent the shell from starting, but some "
-  echo "WARNING: programs expect your ${HOME} to belong to you."
+  echo "WARNING: programs expect that ${HOME} belongs to you."
   echo "WARNING: Please consider correcting this issue."
 fi
  
