@@ -18,6 +18,11 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# source the system wide bashrc if it exists
+if [ -e "/etc/bash.bashrc" ] ; then
+  source "/etc/bash.bashrc"
+fi
+
 # Shell Options
 #
 # See man bash for more options...
