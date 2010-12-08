@@ -67,8 +67,8 @@ fi
 # bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
 # if [ $bmajor -gt 3 ] || [ $bmajor -eq 3 -a $bminor -ge 2 ]; then
 #   if [ -r /etc/bash_completion ]; then
-#      # Source completion code.
-#      . /etc/bash_completion
+#     # Source completion code.
+#     . /etc/bash_completion
 #   fi
 # fi
 # unset bash bmajor bminor
@@ -88,6 +88,11 @@ fi
 # export PROMPT_COMMAND="history -a"
 
 # Aliases
+#
+# Some people use a different file for aliases
+# if [ -f ~/.bash_aliases ]; then
+#   . ~/.bash_aliases
+# fi
 #
 # Some example alias instructions
 # If these are enabled they will be used instead of any instructions
@@ -128,6 +133,11 @@ fi
 # umask 077
 
 # Functions
+#
+# Some people use a different file for functions
+# if [ -f ~/.bash_functions ]; then
+#   . ~/.bash_functions
+# fi
 #
 # Some example functions:
 #
