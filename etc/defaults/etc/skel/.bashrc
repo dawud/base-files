@@ -16,7 +16,7 @@
 # User dependent .bashrc file
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[ -z "${PS1}" ] && return
 
 # source the system wide bashrc if it exists
 if [ -e "/etc/bash.bashrc" ] ; then
