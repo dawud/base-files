@@ -2,41 +2,41 @@ Cygwin base system miscellaneous files
 --------------------------------------
 TODO:
 -----
-		* Write a cygport file.
+    * Write a cygport file.
 
 Change Log
 ----------
 4.0-1
-		* Applied patch in base-files-mketc.sh to solve a problem with creation
-		  of symlinks in /etc for case-sensitive-enabled win7 systems.
+    * Applied patch in base-files-mketc.sh to solve a problem with creation
+      of symlinks in /etc for case-sensitive-enabled win7 systems.
       http://sourceware.org/ml/cygwin/2010-04/txt00011.txt - Shaddy Baddah
-		* New file: skel/.bash_logout: clear the screen after logout.
+    * New file: skel/.bash_logout: clear the screen after logout.
     * New file: skel/.profile: set HOSTNAME for dash & posh.
-		* New file: skel/.mkshrc: source /etc/mkshrc.
-		* Updated the manifest.lst to include new files.
+    * New file: skel/.mkshrc: source /etc/mkshrc.
+    * Updated the manifest.lst to include new files.
     * Moved the command for setting /tmp perms to 
-		  postinstall/base-files-mketc.sh.
+      postinstall/base-files-mketc.sh.
       http://cygwin.com/ml/cygwin/2010-11/msg00464.html - Daniel Colascione
     * Modified the PRINTER setting in /etc/profile. No case switch
-		  now. 
+      now. 
       http://cygwin.com/ml/cygwin/2010-11/msg00464.html - Daniel Colascione
-		* Added a WARNING in the conditional loop that creates $HOME for
-		  already existing homes that don't belong to the user.
-			http://cygwin.com/ml/cygwin-developers/2010-09/msg00007.html -
-			Corinna Vinschen & Andy Koppe
+    * Added a WARNING in the conditional loop that creates $HOME for
+      already existing homes that don't belong to the user.
+      http://cygwin.com/ml/cygwin-developers/2010-09/msg00007.html -
+      Corinna Vinschen & Andy Koppe
     * Added two hooks to source .bash_aliases and .bash_functions, if they
-		  exist.
-		* Added an example function to .bashrc (enhanced cd command)
-		* Backtick command substitution notation replaced with $(...)
-		* All variable expansion is written within curly braces.
-		* Case switch to detect which shell is running taken out of /etc/profile.
-		  This solves these two bugs:
-		* Bug regarding PS1 unset in interactive shells with a non-interactive 
-		  ancestor solved. http://cygwin.com/ml/cygwin/2010-02/msg00503.html -
-			Reported by Jon Turney
-		* Bug regarding mksh a well-defined PS1 solved. 
-		  http://sourceware.org/ml/cygwin/2010-05/msg00000.html - Reported by
-			Chris Sutcliffe
+      exist.
+    * Added an example function to .bashrc (enhanced cd command)
+    * Backtick command substitution notation replaced with $(...)
+    * All variable expansion is written within curly braces.
+    * Case switch to detect which shell is running taken out of /etc/profile.
+      This solves these two bugs:
+    * Bug regarding PS1 unset in interactive shells with a non-interactive 
+      ancestor solved. http://cygwin.com/ml/cygwin/2010-02/msg00503.html -
+      Reported by Jon Turney
+    * Bug regarding mksh a well-defined PS1 solved. 
+      http://sourceware.org/ml/cygwin/2010-05/msg00000.html - Reported by
+      Chris Sutcliffe
 3.9-3
     * Removed X11R6 from $PATH - Angelo Graziosi
     * Fixed escaping \t in HISTIGNORE
