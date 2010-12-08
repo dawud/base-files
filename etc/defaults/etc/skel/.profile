@@ -25,8 +25,5 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 
-# Set a simple prompt
-PS1='$ '
-
 # Set a HOSTNAME variable
 export HOSTNAME=$(hostname)
