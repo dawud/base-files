@@ -75,7 +75,7 @@ export CVS_RSH="/bin/ssh"
 # export CVSROOT=:pserver:anoncvs@sources.redhat.com:/cvs/src
 
 # Define default printer
-read -r < PRINTER '/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
+read -r PRINTER < '/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
 export PRINTER=${PRINTER%%,*}
 
 # Default to removing the write permission for group and other
