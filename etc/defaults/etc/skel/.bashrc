@@ -56,22 +56,9 @@ fi
 # Define to avoid flattening internal contents of tar files
 # COMP_TAR_INTERNAL_PATHS=1
 #
-# To turn on programmable completion enhancements, check /etc/bash.bashrc,
-# ask your admin to do it, or do it yourself here. 
+# Uncomment to turn on programmable completion enhancements.
 # Any completions you add in ~/.bash_completion are sourced last.
-#
-# Check that we haven't already been sourced.
-# [ -z "$BASH_VERSION" -o -n "$BASH_COMPLETION" ] && return
-#
-# Check for recent enough version of bash.
-# bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
-# if [ $bmajor -gt 3 ] || [ $bmajor -eq 3 -a $bminor -ge 2 ]; then
-#   if [ -r /etc/bash_completion ]; then
-#     # Source completion code.
-#     . /etc/bash_completion
-#   fi
-# fi
-# unset bash bmajor bminor
+# [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
 # History Options
 #

@@ -34,26 +34,8 @@ PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
 # Run the profile.d scripts for bash/sh
 # Note that these are supplied by separate packages
 # Ascending alphanumerical order enforced
-if [ -d "/etc/profile.d" ]; then
-  while read f; do
-  if [ -f "${f}" ]; then
-    . "${f}"
-  fi
-  done <<- EOF
-  $(/bin/find -L /etc/profile.d -type f -iname '*.sh' | LC_ALL=C sort)
-  EOF
-fi
-
-# enable bash completion
-# Check that we haven't already been sourced.
-# [ -z "$BASH_VERSION" -o -n "$BASH_COMPLETION" ] && return
-#
-# Check for recent enough version of bash.
-# bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
-# if [ $bmajor -gt 3 ] || [ $bmajor -eq 3 -a $bminor -ge 2 ]; then
-#   if [ -r /etc/bash_completion ]; then
-#      # Source completion code.
-#      . /etc/bash_completion
-#   fi
-# fi
-# unset bash bmajor bminor
+[ -d "/etc/profile.d" ] && while read f; do
+  [ -f "${f}" ] && . "${f}"
+done <<- EOF
+$(/bin/find -L /etc/profile.d -type f -iname '*.sh' | LC_ALL=C sort)
+EOF
