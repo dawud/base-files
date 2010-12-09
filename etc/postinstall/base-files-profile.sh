@@ -10,7 +10,7 @@ while read f; do
   fDest="/${f}"
   if [ ! -e ${fDest} -a ! -L ${fDest} ]; then
     echo "Using the default version of ${fDest} (${fSrc})"
-	  /usr/bin/mkdir -p $(dirname ${fDest})
+    /usr/bin/mkdir -p $(dirname ${fDest})
     /usr/bin/touch ${fDest}
     /usr/bin/cp ${fSrc} ${fDest}
   else

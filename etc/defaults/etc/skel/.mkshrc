@@ -16,8 +16,8 @@
 #
 # check if this is really mksh  # {((
 case $KSH_VERSION in
-*MIRBSD\ KSH*) ;;
-*) echo "Arghs!"; return 0 ;;
+  *MIRBSD\ KSH*) ;;
+  *) echo "Arghs!"; return 0 ;;
 esac                            # }
 #
 # source the system-wide mkshrc file
