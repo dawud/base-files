@@ -58,7 +58,7 @@ if [ ! -d "${HOME}" ]; then
 		HOME=/
 		echo "Setting HOME to ${HOME}."
 	fi
-elif [ ! -O "$HOME" -a "${HOME#/home/}" != "${HOME}" ]
+elif [ ! -O "$HOME" -a "${HOME#/home/}" != "${HOME}" ]; then
   echo "WARNING: Your home directory at ${HOME} is owned by someone else!"
   echo "WARNING: This doesn't prevent the shell from starting, but some "
   echo "WARNING: programs expect that ${HOME} belongs to you."
