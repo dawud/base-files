@@ -16,7 +16,7 @@
 # User dependent .bashrc file
 
 # If not running interactively, don't do anything
-[ -z "${PS1}" ] && return
+[[ "$-" != *i* ]] && return
 
 # source the system wide bashrc if it exists
 if [ -e "/etc/bash.bashrc" ] ; then
@@ -78,7 +78,7 @@ fi
 #
 # Some people use a different file for aliases
 # if [ -f "${HOME}/.bash_aliases" ]; then
-#   . ${HOME}/.bash_aliases
+#   source "${HOME}/.bash_aliases"
 # fi
 #
 # Some example alias instructions
@@ -123,7 +123,7 @@ fi
 #
 # Some people use a different file for functions
 # if [ -f "${HOME}/.bash_functions" ]; then
-#   . ${HOME}/.bash_functions
+#   source "${HOME}/.bash_functions"
 # fi
 #
 # Some example functions:
