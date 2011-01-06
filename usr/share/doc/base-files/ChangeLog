@@ -22,6 +22,7 @@ Change Log
       and .profile to check if they have been already sourced, as suggested by
       Andy Koppe in cygwin.com/ml/cygwin-apps/2010-12/msg00071.html
     * HOSTNAME definition back in /etc/profile.
+    * Dropped .mkshrc. This has to be discussed with mksh mantainer.
 4.0-1
     * Never released.
     * Applied patch in base-files-mketc.sh to solve a problem with creation
