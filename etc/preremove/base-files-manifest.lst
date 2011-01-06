@@ -7,4 +7,3 @@ etc/skel/.bashrc
 etc/skel/.inputrc
 etc/skel/.bash_profile
 etc/skel/.profile
-etc/skel/.mkshrc
