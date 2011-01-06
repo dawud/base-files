@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/sh
 # base-files version 4.0-1
 
 #--
@@ -7,9 +7,8 @@
 #--
 
 FILES="hosts protocols services networks"
-
-OSNAME="$(/bin/uname -s)"
-WINSYS32HOME="$(/bin/cygpath -S -w)"
+OSNAME="$(/usr/bin/uname -s)"
+WINSYS32HOME="$(/usr/bin/cygpath -S -w)"
 WINETC="${WINSYS32HOME}\\drivers\\etc"
 
 if [ ! -d "${WINETC}" ]; then
