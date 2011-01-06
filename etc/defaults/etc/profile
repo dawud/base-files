@@ -16,6 +16,9 @@
 # The Linux Documentation Project: http://www.tldp.org/
 # The Linux Cookbook: http://www.tldp.org/LDP/linuxcookbook/html/
 
+# Check that we haven't already been sourced.
+[[ -z ${CYG_SYS_PROFILE} ]] && CYG_SYS_PROFILE="1" || return
+
 # Setup some default paths. Note that this order will allow user installed
 # software to override 'system' software.
 # Modifying these default path settings can be done in different ways.
@@ -62,6 +65,7 @@ profile_d ()
 
 if [[ -n ${BASH_VERSION} ]]; then
   [[ -f "/etc/bash.bashrc" ]] && . "/etc/bash.bashrc"
+  HOSTNAME=$(hostname)
   profile_d sh
 elif [[ -n ${KSH_VERSION} ]]; then
   PS1=$(print '\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}\033[0m\n$ ')

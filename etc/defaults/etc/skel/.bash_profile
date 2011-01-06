@@ -13,8 +13,13 @@
 # would be benifitial to all, please feel free to send
 # a patch to the cygwin mailing list.
 
+# User dependent .bash_profile file
+
+# Check that we haven't already been sourced.
+[[ -z ${CYG_USER_BASHPROFILE} ]] && CYG_USER_BASHPROFILE="1" || return
+
 # source the users bashrc if it exists
-if [ -e "${HOME}/.bashrc" ] ; then
+if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
