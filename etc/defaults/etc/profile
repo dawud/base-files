@@ -1,5 +1,5 @@
 # base-files version 4.0-1
-# /etc/profile: executed by bash(1) for login shells.
+# /etc/profile: executed by the command interpreter for login shells.
 
 # The latest version as installed by the Cygwin Setup program can
 # always be found at /etc/defaults/etc/profile
@@ -18,17 +18,69 @@
 
 # Setup some default paths. Note that this order will allow user installed
 # software to override 'system' software.
-# Modifying these default path settings can be done in complementary ways:
-#  a) system-wide
-#  b) per-user
-#  c) per shell
+# Modifying these default path settings can be done in different ways.
 # To learn more about startup files, refer to your shell's man page.
-export PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
-export MANPATH="/usr/local/man:/usr/share/man:/usr/man:${MANPATH}"
-export INFOPATH="/usr/local/info:/usr/share/info:/usr/info:${INFOPATH}"
+PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
+MANPATH="/usr/local/man:/usr/share/man:/usr/man:${MANPATH}"
+INFOPATH="/usr/local/info:/usr/share/info:/usr/info:${INFOPATH}"
 
 # Set the user id
-export USER="$(id -un)"
+USER="$(id -un)"
+
+# TMP and TEMP are defined in the Windows environment.  Leaving
+# them set to the default Windows temporary directory can have
+# unexpected consequences.
+unset TMP
+unset TEMP
+# Alternatively, set them to the Cygwin temporary directory
+# or to any other tmp directory of your choice. Remember to uncomment
+# below to export them.
+# TMP="/tmp"
+# TEMP="/tmp"
+
+# Define default printer
+read -r PRINTER < '/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
+PRINTER=${PRINTER%%,*}
+
+# It is recommended that cvs uses ssh for it's remote shell environment
+# CVS_RSH="/usr/bin/ssh"
+
+# Patches to Cygwin always appreciated ;)
+# CVSROOT=:pserver:anoncvs@sources.redhat.com:/cvs/src
+
+# Shell dependent settings
+profile_d ()
+{
+  saved_LC_COLLATE=${LC_COLLATE}
+  LC_COLLATE=C
+  for file in /etc/profile.d/*.$1; do
+    LC_COLLATE=${saved_LC_COLLATE}
+    test -a "${file}" && . "${file}"
+  done
+  unset saved_LC_COLLATE
+}
+
+if [[ -n ${BASH_VERSION} ]]; then
+  [[ -f "/etc/bash.bashrc" ]] && . "/etc/bash.bashrc"
+  profile_d sh
+elif [[ -n ${KSH_VERSION} ]]; then
+  PS1=$(print '\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}\033[0m\n$ ')
+  typeset -l HOSTNAME=$(hostname)
+  profile_d sh
+elif [[ -n ${ZSH_VERSION} ]]; then
+  PS1='(%n@%m)[%h] %~ %% '
+  HOSTNAME=$(hostname)
+  profile_d zsh
+else PS1="$ "
+fi
+
+export PATH MANPATH INFOPATH USER PRINTER PS1 HOSTNAME
+# export TMP TEMP CVS_RSH CVSROOT
+
+# Default to removing the write permission for group and other
+#  (files normally created with mode 777 become 755; files created with
+#  mode 666 become 644)
+umask 022
 
 # Here is how HOME is set, in order of priority, when starting from Windows
 #  1) From existing HOME in the Windows environment, translated to a Posix path
@@ -44,7 +96,7 @@ if [ ! -d "${HOME}" ]; then
     echo "They will never be overwritten nor automatically updated."
     echo
     cd /etc/skel
-    /bin/find . -type f | while read f; do
+    /usr/bin/find . -type f | while read f; do
       fDest=$(echo ${f} | sed -e 's/^\.//g')
       if [ ! -e "${HOME}${fDest}" -a ! -L "${HOME}${fDest}" ]; then
         /usr/bin/install -D -p -v "${f}" "${HOME}/${fDest}"
@@ -65,24 +117,6 @@ elif [ ! -O "$HOME" -a "${HOME#/home/}" != "${HOME}" ]; then
   echo "WARNING: Please consider correcting this issue."
 fi
  
-# Set a minumum PS1 prompt, and let specific shells startup scripts alter it.
-export PS1="$ "
-
-# It is recommended that cvs uses ssh for it's remote shell environment
-export CVS_RSH="/bin/ssh"
-
-# Patches to Cygwin always appreciated ;)
-# export CVSROOT=:pserver:anoncvs@sources.redhat.com:/cvs/src
-
-# Define default printer
-read -r PRINTER < '/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
-export PRINTER=${PRINTER%%,*}
-
-# Default to removing the write permission for group and other
-#  (files normally created with mode 777 become 755; files created with
-#  mode 666 become 644)
-umask 022
-
 # Make sure we start in home unless invoked by CHERE
 if [ ! -z "${CHERE_INVOKING}" ]; then
   unset CHERE_INVOKING
@@ -111,7 +145,7 @@ fi
 #
 # If this message keeps appearing and you are sure it's a mistake (ie, don't
 #   email about it!), comment out the test below.
-case `id -ng` in
+case "$(id -ng)" in
 mkpasswd )
   echo "Your group is currently \"mkpasswd\".  This indicates that your"
   echo "gid is not in /etc/group and your uid is not in /etc/passwd."
