@@ -3,26 +3,43 @@ Cygwin base system miscellaneous files
 TODO:
 -----
     * Write a cygport file.
+    * Future versions will relay in /etc/mkshrc to set PS1 properly.
+    * Ask zsh mantainer to put /etc/zprofile and /etc/zshrc in place during
+      installation.
 
 Change Log
 ----------
+4.0-2
+    * A modified version of a case switch to run shell dependent stuff based 
+      on ENV variables detection is back in /etc/profile, as proposed in
+      cygwin.com/ml/cygwin/2010-11/msg00464.html - Daniel Colascione
+    * Due to this changes, .profile has been dropped (added in 4.0-1).
+    * Since SYS_BASHRC and SYS_BASH_LOGOUT will be enabled in bash-4.1
+      .bash_logout (added in 4.0-1) has been deprecated in favour of 
+      /etc/bash.bash_logout.
+      cygwin.com/ml/cygwin-apps/2010-12/msg00075.html
+    * Added tests to /etc/profile, /etc/bash.bashrc, .bash_profile, .bashrc
+      and .profile to check if they have been already sourced, as suggested by
+      Andy Koppe in cygwin.com/ml/cygwin-apps/2010-12/msg00071.html
+    * HOSTNAME definition back in /etc/profile.
 4.0-1
+    * Never released.
     * Applied patch in base-files-mketc.sh to solve a problem with creation
       of symlinks in /etc for case-sensitive-enabled win7 systems.
-      http://sourceware.org/ml/cygwin/2010-04/txt00011.txt - Shaddy Baddah
-    * New file: skel/.bash_logout: clear the screen after logout.
-    * New file: skel/.profile: set HOSTNAME for dash & posh.
-    * New file: skel/.mkshrc: source /etc/mkshrc.
+      sourceware.org/ml/cygwin/2010-04/txt00011.txt - Shaddy Baddah
+    * New file skel/.bash_logout clear the screen after logout.
+    * New file skel/.profile set HOSTNAME for dash & posh.
+    * New file skel/.mkshrc source /etc/mkshrc.
     * Updated the manifest.lst to include new files.
     * Moved the command for setting /tmp perms to 
       postinstall/base-files-mketc.sh.
-      http://cygwin.com/ml/cygwin/2010-11/msg00464.html - Daniel Colascione
+      cygwin.com/ml/cygwin/2010-11/msg00464.html - Daniel Colascione
     * Modified the PRINTER setting in /etc/profile. No case switch
       now. 
-      http://cygwin.com/ml/cygwin/2010-11/msg00464.html - Daniel Colascione
+      cygwin.com/ml/cygwin/2010-11/msg00464.html - Daniel Colascione
     * Added a WARNING in the conditional loop that creates $HOME for
       already existing homes that don't belong to the user.
-      http://cygwin.com/ml/cygwin-developers/2010-09/msg00007.html -
+      cygwin.com/ml/cygwin-developers/2010-09/msg00007.html -
       Corinna Vinschen & Andy Koppe
     * Added two hooks to source .bash_aliases and .bash_functions, if they
       exist.
@@ -30,12 +47,11 @@ Change Log
     * Backtick command substitution notation replaced with $(...)
     * All variable expansion is written within curly braces.
     * Case switch to detect which shell is running taken out of /etc/profile.
-      This solves these two bugs:
     * Bug regarding PS1 unset in interactive shells with a non-interactive 
-      ancestor solved. http://cygwin.com/ml/cygwin/2010-02/msg00503.html -
+      ancestor solved. cygwin.com/ml/cygwin/2010-02/msg00503.html -
       Reported by Jon Turney
     * Bug regarding mksh a well-defined PS1 solved. 
-      http://sourceware.org/ml/cygwin/2010-05/msg00000.html - Reported by
+      sourceware.org/ml/cygwin/2010-05/msg00000.html - Reported by
       Chris Sutcliffe
 3.9-3
     * Removed X11R6 from $PATH - Angelo Graziosi
