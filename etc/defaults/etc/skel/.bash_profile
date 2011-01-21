@@ -15,9 +15,6 @@
 
 # User dependent .bash_profile file
 
-# Check that we haven't already been sourced.
-[[ -z ${CYG_USER_BASHPROFILE} ]] && CYG_USER_BASHPROFILE="1" || return
-
 # source the users bashrc if it exists
 if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"

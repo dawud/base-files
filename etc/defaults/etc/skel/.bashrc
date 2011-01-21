@@ -15,9 +15,6 @@
 
 # User dependent .bashrc file
 
-# Check that we haven't already been sourced.
-[[ -z ${CYG_USER_BASHRC} ]] && CYG_USER_BASHRC="1" || return
-
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
