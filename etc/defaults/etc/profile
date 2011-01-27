@@ -48,36 +48,6 @@ PRINTER=${PRINTER%%,*}
 # Patches to Cygwin always appreciated ;)
 # CVSROOT=:pserver:anoncvs@sources.redhat.com:/cvs/src
 
-# Shell dependent settings
-profile_d ()
-{
-  saved_LC_COLLATE=${LC_COLLATE}
-  LC_COLLATE=C
-  for file in /etc/profile.d/*.$1; do
-    LC_COLLATE=${saved_LC_COLLATE}
-    test -a "${file}" && . "${file}"
-  done
-  unset saved_LC_COLLATE
-}
-
-if [[ -n ${BASH_VERSION} ]]; then
-  [[ -f "/etc/bash.bashrc" ]] && . "/etc/bash.bashrc"
-  HOSTNAME=$(hostname)
-  profile_d sh
-elif [[ -n ${KSH_VERSION} ]]; then
-  PS1=$(print '\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}\033[0m\n$ ')
-  typeset -l HOSTNAME=$(hostname)
-  profile_d sh
-elif [[ -n ${ZSH_VERSION} ]]; then
-  PS1='(%n@%m)[%h] %~ %% '
-  HOSTNAME=$(hostname)
-  profile_d zsh
-else PS1="$ "
-fi
-
-export PATH MANPATH INFOPATH USER PRINTER PS1 HOSTNAME
-# export TMP TEMP CVS_RSH CVSROOT
-
 # Default to removing the write permission for group and other
 #  (files normally created with mode 777 become 755; files created with
 #  mode 666 become 644)
@@ -96,9 +66,9 @@ if [ ! -d "${HOME}" ]; then
     echo
     echo "They will never be overwritten nor automatically updated."
     echo
-    cd /etc/skel
+    cd /etc/skel || echo "WARNING: Failed attempt to cd into /etc/skel!"
     /usr/bin/find . -type f | while read f; do
-      fDest=$(echo ${f} | sed -e 's/^\.//g')
+      fDest=${f#.}
       if [ ! -e "${HOME}${fDest}" -a ! -L "${HOME}${fDest}" ]; then
         /usr/bin/install -D -p -v "${f}" "${HOME}/${fDest}"
       fi
@@ -122,8 +92,38 @@ fi
 if [ ! -z "${CHERE_INVOKING}" ]; then
   unset CHERE_INVOKING
 else
-  cd "${HOME}"
+  cd "${HOME}" || echo "WARNING: Failed attempt to cd into ${HOME}!"
 fi
+
+# Shell dependent settings
+profile_d ()
+{
+  saved_LC_COLLATE=${LC_COLLATE}
+  LC_COLLATE=C
+  for file in /etc/profile.d/*.$1; do
+    test -a "${file}" && . "${file}"
+  done
+  LC_COLLATE=${saved_LC_COLLATE}
+  unset saved_LC_COLLATE
+}
+
+if [[ -n ${BASH_VERSION} ]]; then
+  HOSTNAME=$(hostname)
+  profile_d sh
+  [[ -f "/etc/bash.bashrc" ]] && . "/etc/bash.bashrc"
+elif [[ -n ${KSH_VERSION} ]]; then
+  typeset -l HOSTNAME=$(hostname)
+  profile_d sh
+  PS1=$(print '\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}\033[0m\n$ ')
+elif [[ -n ${ZSH_VERSION} ]]; then
+  HOSTNAME=$(hostname)
+  profile_d zsh
+  PS1='(%n@%m)[%h] %~ %% '
+else PS1="$ "
+fi
+
+export PATH MANPATH INFOPATH USER PRINTER PS1 HOSTNAME
+# export TMP TEMP CVS_RSH CVSROOT
 
 # Check to see if mkpasswd/mkgroup needs to be run try and cut down the emails
 #   about this on the lists!
