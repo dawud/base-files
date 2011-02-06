@@ -1,4 +1,4 @@
-# base-files version 4.0-2
+# base-files version 4.0-3
 # /etc/bash.bash_logout: executed by bash(1) when login shell exits.
 
 # The latest version as installed by the Cygwin Setup program can

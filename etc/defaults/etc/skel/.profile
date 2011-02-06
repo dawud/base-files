@@ -1,4 +1,4 @@
-# base-files version 4.0-2
+# base-files version 4.0-3
 # ~/.profile: executed by the command interpreter for login shells.
 
 # The latest version as installed by the Cygwin Setup program can
@@ -14,9 +14,6 @@
 # a patch to the cygwin mailing list.
 
 # User dependent .profile file
-
-# Check that we haven't already been sourced.
-[[ -z ${CYG_USER_PROFILE} ]] && CYG_USER_PROFILE="1" || return
 
 # This file is not read by bash(1) if ~/.bash_profile or ~/.bash_login
 # exists.

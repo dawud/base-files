@@ -1,4 +1,4 @@
-# base-files version 4.0-2
+# base-files version 4.0-3
 # ~/.bash_profile: executed by bash(1) for login shells.
 
 # The latest version as installed by the Cygwin Setup program can
@@ -22,15 +22,15 @@ fi
 
 # Set PATH so it includes user's private bin if it exists
 # if [ -d "${HOME}/bin" ] ; then
-#   PATH=${HOME}/bin:${PATH}
+#   PATH="${HOME}/bin:${PATH}"
 # fi
 
 # Set MANPATH so it includes users' private man if it exists
 # if [ -d "${HOME}/man" ]; then
-#   MANPATH=${HOME}/man:${MANPATH}
+#   MANPATH="${HOME}/man:${MANPATH}"
 # fi
 
 # Set INFOPATH so it includes users' private info if it exists
 # if [ -d "${HOME}/info" ]; then
-#   INFOPATH=${HOME}/info:${INFOPATH}
+#   INFOPATH="${HOME}/info:${INFOPATH}"
 # fi

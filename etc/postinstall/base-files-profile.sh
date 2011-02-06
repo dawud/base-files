@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-# base-files version 4.0-2
+# base-files version 4.0-3
 
 MANIFEST="/etc/preremove/base-files-manifest.lst"
 

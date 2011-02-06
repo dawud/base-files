@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-# base-files version 4.0-2
+# base-files version 4.0-3
 
 #--
 # Create symbolic links from some /etc files to the Windows equivalents

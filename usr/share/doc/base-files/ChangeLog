@@ -6,10 +6,17 @@ TODO:
     * Future versions will relay in /etc/mkshrc to set PS1 properly.
     * Ask zsh mantainer to put /etc/zprofile and /etc/zshrc in place during
       installation.
+    * Should users with GID 544/0 have /usr/bin/sbin in their paths?
 
 Change Log
 ----------
+4.0-3
+    * Reordered /etc/profile to properly initialise PS1 - Cyrille Lefevre
+    * Supressed a fork in /etc/profile routine for copying skeletal files and
+      added a test to `cd' command - Cyrille Lefevre 
+    * Removed /bin from path, as it is included via /usr/bin.
 4.0-2
+    * Never released.
     * A modified version of a case switch to run shell dependent stuff based 
       on ENV variables detection is back in /etc/profile, as proposed in
       cygwin.com/ml/cygwin/2010-11/msg00464.html - Daniel Colascione
