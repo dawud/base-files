@@ -108,15 +108,15 @@ profile_d ()
 }
 
 if [[ -n ${BASH_VERSION} ]]; then
-  HOSTNAME=$(hostname)
+  HOSTNAME=$(/usr/bin/hostname)
   profile_d sh
   [[ -f "/etc/bash.bashrc" ]] && . "/etc/bash.bashrc"
 elif [[ -n ${KSH_VERSION} ]]; then
-  typeset -l HOSTNAME=$(hostname)
+  typeset -l HOSTNAME=$(/usr/bin/hostname)
   profile_d sh
   PS1=$(print '\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}\033[0m\n$ ')
 elif [[ -n ${ZSH_VERSION} ]]; then
-  HOSTNAME=$(hostname)
+  HOSTNAME=$(/usr/bin/hostname)
   profile_d zsh
   PS1='(%n@%m)[%h] %~ %% '
 else PS1="$ "
