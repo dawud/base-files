@@ -42,12 +42,6 @@ unset TEMP
 read -r PRINTER < '/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
 PRINTER=${PRINTER%%,*}
 
-# It is recommended that cvs uses ssh for it's remote shell environment
-# CVS_RSH="/usr/bin/ssh"
-
-# Patches to Cygwin always appreciated ;)
-# CVSROOT=:pserver:anoncvs@sources.redhat.com:/cvs/src
-
 # Default to removing the write permission for group and other
 #  (files normally created with mode 777 become 755; files created with
 #  mode 666 become 644)
@@ -123,7 +117,7 @@ else PS1="$ "
 fi
 
 export PATH MANPATH INFOPATH USER PRINTER PS1 HOSTNAME
-# export TMP TEMP CVS_RSH CVSROOT
+# export TMP TEMP
 
 # Check to see if mkpasswd/mkgroup needs to be run try and cut down the emails
 #   about this on the lists!
