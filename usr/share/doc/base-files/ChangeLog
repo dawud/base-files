@@ -3,14 +3,18 @@ Cygwin base system miscellaneous files
 TODO:
 -----
     * Write a cygport file.
-    * Future versions will relay in /etc/mkshrc to set PS1 properly.
+    * Future versions should relay in /etc/mkshrc to set PS1 properly for mksh.
     * Ask zsh mantainer to put /etc/zprofile and /etc/zshrc in place during
       installation.
     * Should users with GID 544/0 have /usr/bin/sbin in their paths?
 
 Change Log
 ----------
+4.0-4
+    * Set TMP and TEMP to /tmp in /etc/profile.
+    * Dropped CVS stuff from /etc/profile - Andy Koppe
 4.0-3
+    * Never released.
     * Reordered /etc/profile to properly initialise PS1 - Cyrille Lefevre
     * Supressed a fork in /etc/profile routine for copying skeletal files and
       added a test to `cd' command - Cyrille Lefevre 

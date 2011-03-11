@@ -1,4 +1,4 @@
-# base-files version 4.0-3
+# base-files version 4.0-4
 # ~/.bash_profile: executed by bash(1) for login shells.
 
 # The latest version as installed by the Cygwin Setup program can

@@ -1,4 +1,4 @@
-# base-files version 4.0-3
+# base-files version 4.0-4
 # ~/.profile: executed by the command interpreter for login shells.
 
 # The latest version as installed by the Cygwin Setup program can

@@ -1,4 +1,4 @@
-# base-files version 4.0-3
+# base-files version 4.0-4
 # /etc/profile: executed by the command interpreter for login shells.
 
 # The latest version as installed by the Cygwin Setup program can
@@ -27,16 +27,12 @@ INFOPATH="/usr/local/info:/usr/share/info:/usr/info:${INFOPATH}"
 # Set the user id
 USER="$(id -un)"
 
-# TMP and TEMP are defined in the Windows environment.  Leaving
-# them set to the default Windows temporary directory can have
-# unexpected consequences.
-unset TMP
-unset TEMP
-# Alternatively, set them to the Cygwin temporary directory
-# or to any other tmp directory of your choice. Remember to uncomment
-# below to export them.
-# TMP="/tmp"
-# TEMP="/tmp"
+# TMP and TEMP are defined in the Windows environment. Leaving
+# them set to the default Windows temporary directory or unset
+# can have unexpected consequences. 
+unset TMP TEMP
+TMP="/tmp"
+TEMP="/tmp"
 
 # Define default printer
 read -r PRINTER < '/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
@@ -116,8 +112,7 @@ elif [[ -n ${ZSH_VERSION} ]]; then
 else PS1="$ "
 fi
 
-export PATH MANPATH INFOPATH USER PRINTER PS1 HOSTNAME
-# export TMP TEMP
+export PATH MANPATH INFOPATH USER TMP TEMP PRINTER HOSTNAME PS1 
 
 # Check to see if mkpasswd/mkgroup needs to be run try and cut down the emails
 #   about this on the lists!
