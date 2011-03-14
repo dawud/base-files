@@ -2,3 +2,5 @@
 send.email.patches/
 *~
 *.orig
+*.sig
+*.bz2
