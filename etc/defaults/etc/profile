@@ -36,8 +36,7 @@ TEMP="/tmp"
 
 # Define default printer
 p='/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
-[[ -e ${p} ]] && read -r PRINTER < ${p}
-PRINTER=${PRINTER%%,*}
+([[ -e ${p} ]] && read -r PRINTER < ${p}) && PRINTER=${PRINTER%%,*}
 
 # Default to removing the write permission for group and other
 #  (files normally created with mode 777 become 755; files created with
