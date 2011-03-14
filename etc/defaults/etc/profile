@@ -35,7 +35,8 @@ TMP="/tmp"
 TEMP="/tmp"
 
 # Define default printer
-read -r PRINTER < '/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
+p='/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
+[[ -e ${p} ]] && read -r PRINTER < ${p}
 PRINTER=${PRINTER%%,*}
 
 # Default to removing the write permission for group and other

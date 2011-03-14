@@ -10,6 +10,9 @@ TODO:
 
 Change Log
 ----------
+4.0-5
+    * Added test in /etc/profile PRINTER setting - Corinna Vinschen
+      cygwin.com/ml/cygwin/2011-03/msg00397.html
 4.0-4
     * Set TMP and TEMP to /tmp in /etc/profile.
     * Dropped CVS stuff from /etc/profile - Andy Koppe
