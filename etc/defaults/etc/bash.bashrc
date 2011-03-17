@@ -1,4 +1,4 @@
-# base-files version 4.0-4
+# base-files version 4.0-6
 # /etc/bash.bashrc: executed by bash(1) for interactive shells.
 
 # The latest version as installed by the Cygwin Setup program can

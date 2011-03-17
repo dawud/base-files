@@ -1,4 +1,4 @@
-# base-files version 4.0-4
+# base-files version 4.0-6
 # /etc/profile: executed by the command interpreter for login shells.
 
 # The latest version as installed by the Cygwin Setup program can
@@ -36,7 +36,7 @@ TEMP="/tmp"
 
 # Define default printer
 p='/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
-([[ -e ${p} ]] && read -r PRINTER < ${p}) && PRINTER=${PRINTER%%,*}
+([ -e "${p}" ] && read -r PRINTER < "${p}") && PRINTER=${PRINTER%%,*}
 
 # Default to removing the write permission for group and other
 #  (files normally created with mode 777 become 755; files created with
@@ -97,15 +97,15 @@ profile_d ()
   unset saved_LC_COLLATE
 }
 
-if [[ -n ${BASH_VERSION} ]]; then
+if [ -n ${BASH_VERSION} ]; then
   HOSTNAME=$(/usr/bin/hostname)
   profile_d sh
-  [[ -f "/etc/bash.bashrc" ]] && . "/etc/bash.bashrc"
-elif [[ -n ${KSH_VERSION} ]]; then
+  [ -f "/etc/bash.bashrc" ] && . "/etc/bash.bashrc"
+elif [ -n ${KSH_VERSION} ]; then
   typeset -l HOSTNAME=$(/usr/bin/hostname)
   profile_d sh
   PS1=$(print '\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}\033[0m\n$ ')
-elif [[ -n ${ZSH_VERSION} ]]; then
+elif [ -n ${ZSH_VERSION} ]; then
   HOSTNAME=$(/usr/bin/hostname)
   profile_d zsh
   PS1='(%n@%m)[%h] %~ %% '
