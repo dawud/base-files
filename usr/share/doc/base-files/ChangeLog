@@ -8,17 +8,14 @@ TODO:
     * Ask zsh mantainer to put /etc/zprofile and /etc/zshrc in place during
       installation.
     * Should users with GID 544/0 have /usr/bin/sbin in their paths?
-    * Replace `echo' with builtin `printf'.
-    * Think how posh login shell can test for HOME correct owner.
 
 Change Log
 ----------
 4.0-6
-    * Re-corrected PRINTER setting
+    * Re-corrected PRINTER setting.
     * Dropped non-POSIX tests in /etc/profile - Eric Blake
       cygwin.com/ml/cygwin/2011-03/msg00510.html
-    * Enclosed code to set home in a function to workaround non-portability of
-      user's homedir ownership test.
+    * Dropped user's homedir ownership test.
 4.0-5
     * Added test in /etc/profile PRINTER setting - Corinna Vinschen
       cygwin.com/ml/cygwin/2011-03/msg00397.html
@@ -36,7 +33,6 @@ Change Log
     * A modified version of a case switch to run shell dependent stuff based 
       on ENV variables detection is back in /etc/profile, as proposed in
       cygwin.com/ml/cygwin/2010-11/msg00464.html - Daniel Colascione
-    * Due to this changes, .profile has been dropped (added in 4.0-1).
     * Since SYS_BASHRC and SYS_BASH_LOGOUT will be enabled in bash-4.1
       .bash_logout (added in 4.0-1) has been deprecated in favour of 
       /etc/bash.bash_logout.
