@@ -3,18 +3,22 @@ Cygwin base system miscellaneous files
 TODO:
 -----
     * Write a cygport file.
-    * Future versions should relay in /etc/mkshrc to set PS1 properly for mksh.
+    * Future versions should relay in /etc/mkshrc to set PS1 properly for mksh
+      if mksh supports sourcing /etc/mkshrc for interactive-login sessions.
     * Ask zsh mantainer to put /etc/zprofile and /etc/zshrc in place during
       installation.
     * Should users with GID 544/0 have /usr/bin/sbin in their paths?
+    * Replace `echo' with builtin `printf'.
+    * Think how posh login shell can test for HOME correct owner.
 
 Change Log
 ----------
 4.0-6
-    * Re-corrected PRINTER setting - Angelo Graziosi, Christopher Faylor
-      cygwin.com/ml/cygwin/2011-03/msg00507.html
-    * Corrected bashisms in /etc/profile - Eric Blake
+    * Re-corrected PRINTER setting
+    * Dropped non-POSIX tests in /etc/profile - Eric Blake
       cygwin.com/ml/cygwin/2011-03/msg00510.html
+    * Enclosed code to set home in a function to workaround non-portability of
+      user's homedir ownership test.
 4.0-5
     * Added test in /etc/profile PRINTER setting - Corinna Vinschen
       cygwin.com/ml/cygwin/2011-03/msg00397.html

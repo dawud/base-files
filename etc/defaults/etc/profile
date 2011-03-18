@@ -36,13 +36,19 @@ TEMP="/tmp"
 
 # Define default printer
 p='/proc/registry/HKEY_CURRENT_USER/Software/Microsoft/Windows NT/CurrentVersion/Windows/Device'
-([ -e "${p}" ] && read -r PRINTER < "${p}") && PRINTER=${PRINTER%%,*}
+if [ -e "${p}" ] ; then
+  read -r PRINTER < "${p}" 
+  PRINTER=${PRINTER%%,*}
+fi
+unset p
 
 # Default to removing the write permission for group and other
 #  (files normally created with mode 777 become 755; files created with
 #  mode 666 become 644)
 umask 022
 
+set_home ()
+{
 # Here is how HOME is set, in order of priority, when starting from Windows
 #  1) From existing HOME in the Windows environment, translated to a Posix path
 #  2) from /etc/passwd, if there is an entry with a non empty directory field
@@ -71,13 +77,18 @@ if [ ! -d "${HOME}" ]; then
     HOME=/
     echo "Setting HOME to ${HOME}."
   fi
-elif [ ! -O "$HOME" -a "${HOME#/home/}" != "${HOME}" ]; then
+elif [ ! "x${POSH_VERSION}" = "x" ]; then
+  return
+elif [ ! -O "${HOME}" ] && [ "${HOME#/home/}" != "${HOME}" ]; then
   echo "WARNING: Your home directory at ${HOME} is owned by someone else!"
   echo "WARNING: This doesn't prevent the shell from starting, but some "
   echo "WARNING: programs expect that ${HOME} belongs to you."
   echo "WARNING: Please consider correcting this issue."
 fi
- 
+}
+
+set_home
+
 # Make sure we start in home unless invoked by CHERE
 if [ ! -z "${CHERE_INVOKING}" ]; then
   unset CHERE_INVOKING
@@ -91,25 +102,31 @@ profile_d ()
   saved_LC_COLLATE=${LC_COLLATE}
   LC_COLLATE=C
   for file in /etc/profile.d/*.$1; do
-    test -a "${file}" && . "${file}"
+    [ -e "${file}" ] && . "${file}"
   done
   LC_COLLATE=${saved_LC_COLLATE}
   unset saved_LC_COLLATE
 }
 
-if [ -n ${BASH_VERSION} ]; then
+if [ ! "x${BASH_VERSION}" = "x"  ]; then
   HOSTNAME=$(/usr/bin/hostname)
   profile_d sh
   [ -f "/etc/bash.bashrc" ] && . "/etc/bash.bashrc"
-elif [ -n ${KSH_VERSION} ]; then
+elif [ ! "x${KSH_VERSION}" = "x" ]; then
   typeset -l HOSTNAME=$(/usr/bin/hostname)
   profile_d sh
   PS1=$(print '\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}\033[0m\n$ ')
-elif [ -n ${ZSH_VERSION} ]; then
+elif [ ! "x${ZSH_VERSION}" = "x" ]; then
   HOSTNAME=$(/usr/bin/hostname)
   profile_d zsh
   PS1='(%n@%m)[%h] %~ %% '
-else PS1="$ "
+elif [ ! "x${POSH_VERSION}" = "x" ]; then
+  HOSTNAME=$(/usr/bin/hostname)
+  PS1="$ "
+else 
+  HOSTNAME=$(/usr/bin/hostname) 
+  profile_d sh
+  PS1="$ "
 fi
 
 export PATH MANPATH INFOPATH USER TMP TEMP PRINTER HOSTNAME PS1 
