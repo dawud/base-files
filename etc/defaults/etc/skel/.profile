@@ -1,4 +1,12 @@
-# base-files version 4.0-6
+# To the extent possible under law, the author(s) have dedicated all 
+# copyright and related and neighboring rights to this software to the 
+# public domain worldwide. This software is distributed without any warranty. 
+# You should have received a copy of the CC0 Public Domain Dedication along 
+# with this software. 
+# If not, see <http://creativecommons.org/publicdomain/zero/1.0/>. 
+
+# base-files version 4.0-7
+
 # ~/.profile: executed by the command interpreter for login shells.
 
 # The latest version as installed by the Cygwin Setup program can
@@ -14,6 +22,9 @@
 # a patch to the cygwin mailing list.
 
 # User dependent .profile file
+
+# Set user-defined locale
+export LANG=${locale -uU}
 
 # This file is not read by bash(1) if ~/.bash_profile or ~/.bash_login
 # exists.

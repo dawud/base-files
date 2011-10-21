@@ -1,4 +1,12 @@
-# base-files version 4.0-4
+# To the extent possible under law, the author(s) have dedicated all 
+# copyright and related and neighboring rights to this software to the 
+# public domain worldwide. This software is distributed without any warranty. 
+# You should have received a copy of the CC0 Public Domain Dedication along 
+# with this software. 
+# If not, see <http://creativecommons.org/publicdomain/zero/1.0/>. 
+
+# base-files version 4.0-7
+
 # ~/.bashrc: executed by bash(1) for interactive shells.
 
 # The latest version as installed by the Cygwin Setup program can
@@ -10,7 +18,7 @@
 # The copy in your home directory (~/.bashrc) is yours, please
 # feel free to customise it to create a shell
 # environment to your liking.  If you feel a change
-# would be benificial to all, please feel free to send
+# would be benifitial to all, please feel free to send
 # a patch to the cygwin mailing list.
 
 # User dependent .bashrc file
