@@ -44,8 +44,8 @@ USER="$(id -un)"
 ORIGINAL_TMP=$TMP
 ORIGINAL_TEMP=$TEMP
 unset TMP TEMP
-tmp=$(cygpath -w "$ORIGINAL_TMP")
-temp=$(cygpath -w "$ORIGINAL_TEMP")
+tmp=$(cygpath -w "$ORIGINAL_TMP" 2> /dev/null)
+temp=$(cygpath -w "$ORIGINAL_TEMP" 2> /dev/null)
 TMP="/tmp"
 TEMP="/tmp"
 
