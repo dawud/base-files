@@ -103,13 +103,10 @@ fi
 # Shell dependent settings
 profile_d ()
 {
-  saved_LC_COLLATE=${LC_COLLATE}
-  LC_COLLATE=C
-  for file in /etc/profile.d/*.$1; do
+  for file in $(export LC_COLLATE=C; echo /etc/profile.d/*.$1); do
     [ -e "${file}" ] && . "${file}"
   done
-  LC_COLLATE=${saved_LC_COLLATE}
-  unset saved_LC_COLLATE
+  unset file
 }
 
 if [ ! "x${BASH_VERSION}" = "x"  ]; then
