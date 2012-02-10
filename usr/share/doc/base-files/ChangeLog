@@ -3,14 +3,37 @@ Cygwin base system miscellaneous files
 TODO:
 -----
     * Write a cygport file.
-    * Future versions should relay in /etc/mkshrc to set PS1 properly for mksh
-      if mksh supports sourcing /etc/mkshrc for interactive-login sessions.
+    * Should future versions relay in /etc/mkshrc to set PS1 properly for mksh
+      if mksh supports sourcing /etc/mkshrc for interactive-login sessions?
     * Ask zsh mantainer to put /etc/zprofile and /etc/zshrc in place during
       installation.
     * Should users with GID 544/0 have /usr/bin/sbin in their paths?
 
 Change Log
 ----------
+4.0-7
+    * Environment variable SHELL is now exported from /etc/profile.
+      Improved profile_d() function in /etc/profile - Cyrille Lefevre
+      cygwin.com/ml/cygwin/2011-11/msg00128.html
+    * TMP and TEMP as defined in the Windows environment must be kept
+      for windows apps, even if started from cygwin - Atry
+      cygwin.com/ml/cygwin/2012-01/msg00201.html
+    * Added two files under /etc/profile.d/ that use tzset, which
+      uses the geographical location setting of the user to find the right
+      mapping, rather than the locale setting. Only on Windows 2000 which
+      doesn't know about the user's geographical location, or if fetching
+      the geographical location fails, it falls back to the user's locale.
+      Corrected error in var setting - Corinna Vinschen
+      See cygwin.com/ml/cygwin-developers/2012-01/msg00042.html,
+      cygwin.com/ml/cygwin-developers/2012-01/msg00044.html
+      Updated manifest.
+    * Added CC0 license header to scripts, and the CC0 license
+      itself which is under /usr/share/doc/common-licenses/.
+      Modified locale setting in /etc/profile.d/lang.{sh,csh} to
+      honor the OS setting.
+      Corrected some files' header info.
+      Added Greg's Wiki's URL in /etc/profile.
+      Bumped version number.
 4.0-6
     * Re-corrected PRINTER setting.
     * Dropped non-POSIX tests in /etc/profile - Eric Blake

@@ -110,27 +110,31 @@ profile_d ()
 }
 
 if [ ! "x${BASH_VERSION}" = "x"  ]; then
-  HOSTNAME=$(/usr/bin/hostname)
+  SHELL="bash"
+  HOSTNAME="$(/usr/bin/hostname)"
   profile_d sh
   [ -f "/etc/bash.bashrc" ] && . "/etc/bash.bashrc"
 elif [ ! "x${KSH_VERSION}" = "x" ]; then
-  typeset -l HOSTNAME=$(/usr/bin/hostname)
+  SHELL="mksh"
+  typeset -l HOSTNAME="$(/usr/bin/hostname)"
   profile_d sh
   PS1=$(print '\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}\033[0m\n$ ')
 elif [ ! "x${ZSH_VERSION}" = "x" ]; then
-  HOSTNAME=$(/usr/bin/hostname)
+  SHELL="zsh"
+  HOSTNAME="$(/usr/bin/hostname)"
   profile_d zsh
   PS1='(%n@%m)[%h] %~ %% '
 elif [ ! "x${POSH_VERSION}" = "x" ]; then
-  HOSTNAME=$(/usr/bin/hostname)
+  SHELL="posh"
+  HOSTNAME="$(/usr/bin/hostname)"
   PS1="$ "
 else 
-  HOSTNAME=$(/usr/bin/hostname) 
+  HOSTNAME="$(/usr/bin/hostname)"
   profile_d sh
   PS1="$ "
 fi
 
-export PATH MANPATH INFOPATH USER TMP TEMP PRINTER HOSTNAME PS1 tmp temp
+export PATH MANPATH INFOPATH USER TMP TEMP PRINTER HOSTNAME PS1 SHELL tmp temp
 
 # Check to see if mkpasswd/mkgroup needs to be run try and cut down the emails
 #   about this on the lists!
