@@ -24,7 +24,7 @@
 # User dependent .bash_profile file
 
 # Set user-defined locale
-export LANG=${locale -uU}
+export LANG=$(locale -uU)
 
 # source the users bashrc if it exists
 if [ -f "${HOME}/.bashrc" ] ; then
