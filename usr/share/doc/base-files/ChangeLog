@@ -11,6 +11,15 @@ TODO:
 
 Change Log
 ----------
+4.0-8
+    * Bug fix release.
+      Error in commad substitution in .bash_profile and .profile.
+      Reported by Mike Kaganski and Tom Schutter. See
+      cygwin.com/ml/cygwin/2012-02/msg00332.html
+      cygwin.com/ml/cygwin/2012-02/msg00335.html
+      Hardcoding SHELL from /etc/profile broke some configs. Rolled back.
+      Reported by David Rothenberger. See
+      cygwin.com/ml/cygwin/2012-02/msg00341.html
 4.0-7
     * Environment variable SHELL is now exported from /etc/profile.
       Improved profile_d() function in /etc/profile - Cyrille Lefevre
