@@ -5,7 +5,7 @@
 # with this software. 
 # If not, see <http://creativecommons.org/publicdomain/zero/1.0/>. 
 
-# base-files version 4.0-8
+# base-files version 4.0-9
 
 # /etc/profile.d/tzset.csh: sourced by /etc/profile.
 
@@ -21,4 +21,4 @@
 #mapping, rather than the locale setting.  Only on Windows 2000 which
 #doesn't know about the user's geographical location, or if fetching
 #the geographical location fails, it falls back to the user's locale.
-if ( $?TZ == 0 ) setenv TZ `tzset`
+if ( $?TZ == 0 ) setenv TZ `/usr/bin/tzset`

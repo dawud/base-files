@@ -6,7 +6,7 @@
 # with this software. 
 # If not, see <http://creativecommons.org/publicdomain/zero/1.0/>. 
 
-# base-files version 4.0-8
+# base-files version 4.0-9
 
 MANIFEST="/etc/preremove/base-files-manifest.lst"
 
