@@ -6,7 +6,7 @@
 # with this software. 
 # If not, see <http://creativecommons.org/publicdomain/zero/1.0/>. 
 
-# base-files version 4.0-7
+# base-files version 4.0-8
 
 # Create symbolic links from some /etc files to the Windows equivalents
 # Set perms to /tmp directory
