@@ -18,4 +18,4 @@
 # System-wide lang.sh file
 
 # if no locale variable is set, indicate terminal charset via LANG
-test -z "${LC_ALL:-${LC_CTYPE:-$LANG}}" && export LANG=$(/usr/bin/locale -sU)
+test -z "${LC_ALL:-${LC_CTYPE:-$LANG}}" && export LANG=$(/usr/bin/locale -uU)
