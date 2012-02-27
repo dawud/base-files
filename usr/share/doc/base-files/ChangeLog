@@ -11,6 +11,11 @@ TODO:
 
 Change Log
 ----------
+4.1-1
+    * Setting a system locale and a per-user locale breaks some configs
+      and doesn't play well with mintty. Changed to a user-defined setting in
+      /etc/profile/lang.* Reported by Peter Rosin and Andy Koppe. See
+      cygwin.com/ml/cygwin/2012-02/msg00448.html
 4.0-9
     * Bug fix release.
       In profile.d/* scripts, calls to "locale" and "tzset"
