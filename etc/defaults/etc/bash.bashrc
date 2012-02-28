@@ -18,7 +18,7 @@
 # System-wide bashrc file
 
 # Check that we haven't already been sourced.
-([[ -z ${CYG_SYS_BASHRC} ]] && CYG_SYS_BASHRC="1") || return
+[[ -z ${CYG_SYS_BASHRC} ]] && CYG_SYS_BASHRC="1" || return
 
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
