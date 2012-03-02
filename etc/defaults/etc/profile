@@ -36,16 +36,10 @@ INFOPATH="/usr/local/info:/usr/share/info:/usr/info:${INFOPATH}"
 # Set the user id
 USER="$(id -un)"
 
-# TMP and TEMP as defined in the Windows environment must be kept
-# for windows apps, even if started from cygwin. However, leaving
-# them set to the default Windows temporary directory or unset
+# TMP and TEMP as defined in the Windows environment
 # can have unexpected consequences for cygwin apps, so we define 
 # our own to match GNU/Linux behaviour.
-ORIGINAL_TMP=$TMP
-ORIGINAL_TEMP=$TEMP
 unset TMP TEMP
-tmp=$(cygpath -w "$ORIGINAL_TMP" 2> /dev/null)
-temp=$(cygpath -w "$ORIGINAL_TEMP" 2> /dev/null)
 TMP="/tmp"
 TEMP="/tmp"
 
