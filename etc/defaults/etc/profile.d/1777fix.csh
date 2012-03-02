@@ -1,4 +1,3 @@
-#!/bin/tcsh
 # To the extent possible under law, the author(s) have dedicated all
 # copyright and related and neighboring rights to this software to the
 # public domain worldwide. This software is distributed without any warranty.
@@ -6,7 +5,7 @@
 # with this software.
 # If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
-# base-files version 4.1-1
+# base-files version 4.1-2
 
 # /etc/profile.d/1777fix.csh: sourced by /etc/profile.
 
