@@ -2,6 +2,8 @@ etc/profile.d/lang.sh
 etc/profile.d/lang.csh
 etc/profile.d/tzset.sh
 etc/profile.d/tzset.csh
+etc/profile.d/1777fix.sh
+etc/profile.d/1777fix.csh
 etc/profile
 etc/bash.bashrc
 etc/bash.bash_logout
