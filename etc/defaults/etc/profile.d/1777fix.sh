@@ -35,7 +35,7 @@ then
     # the permissions set by setup.exe
     case $(getfacl "${file}") in
     *default:group::rwx* | *default:other:rwx* )
-      cnt=$((${cnt} + 1))
+      cnt=$((cnt + 1))
       setfacl -m d:g::r-x,d:o:r-x "${file}" 2>/dev/null \
       && success=$((${success} + 1))
       ;;
