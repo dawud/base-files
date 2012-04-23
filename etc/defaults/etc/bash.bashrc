@@ -23,6 +23,9 @@
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
+# Exclude *dlls from TAB expansion
+export EXECIGNORE="*.dll"
+
 # Set a default prompt of: user@host and current_directory
 PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
 
