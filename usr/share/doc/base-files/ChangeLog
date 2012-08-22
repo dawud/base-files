@@ -13,6 +13,11 @@ TODO:
 
 Change Log
 ----------
+4.1.3
+    * Eliminate Windows PATH from default PATH.
+      Better guard for unexistent /etc/skel.
+      Improve profile_d function - Achim Gratz.
+      cygwin.com/ml/cygwin/2012-08/msg00488.html
 4.1-2
     * Enforce a secure ACL in /home /tmp /usr/tmp /var/log /var/run
       using new files /etc/profile.d/1777fix.* written by Corinna Vinschen.
