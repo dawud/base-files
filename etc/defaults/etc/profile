@@ -29,7 +29,8 @@
 # software to override 'system' software.
 # Modifying these default path settings can be done in different ways.
 # To learn more about startup files, refer to your shell's man page.
-PATH="/usr/local/bin:/usr/bin:${PATH}"
+ORIGINAL_PATH="${PATH}"
+PATH="/usr/local/bin:/usr/bin"
 MANPATH="/usr/local/man:/usr/share/man:/usr/man:${MANPATH}"
 INFOPATH="/usr/local/info:/usr/share/info:/usr/info:${INFOPATH}"
 
@@ -69,14 +70,17 @@ if [ ! -d "${HOME}" ]; then
     echo
     echo "They will never be overwritten nor automatically updated."
     echo
-    cd /etc/skel || echo "WARNING: Failed attempt to cd into /etc/skel!"
-    /usr/bin/find . -type f | while read f; do
-      fDest=${f#.}
-      if [ ! -e "${HOME}${fDest}" -a ! -L "${HOME}${fDest}" ]; then
-        /usr/bin/install -D -p -v "${f}" "${HOME}/${fDest}"
-      fi
-    done
+    if ! cd /etc/skel; then
+      echo "WARNING: Failed attempt to cd into /etc/skel!"
+    else
+      /usr/bin/find . -type f | while read f; do
+        fDest=${f#.}
+        if [ ! -e "${HOME}${fDest}" -a ! -L "${HOME}${fDest}" ]; then
+          /usr/bin/install -D -p -v "${f}" "${HOME}/${fDest}"
+        fi
+      done
     unset fDest
+    fi
   else
     echo "${HOME} could not be created."
     { [ -d "${TEMP}" ] && HOME="${TEMP}"; } ||
@@ -97,10 +101,14 @@ fi
 # Shell dependent settings
 profile_d ()
 {
-  for file in $(export LC_COLLATE=C; echo /etc/profile.d/*.$1); do
-    [ -e "${file}" ] && . "${file}"
+  _LC_SAVE_="{LC_ALL}"
+  LC_ALL=C
+  for file in /etc/profile.d/*.$1); do
+    [ -e "${file}" ] && LC_ALL="${_LC_SAVE_}" . "${file}"
   done
+  LC_ALL="{_LC_SAVE_}"
   unset file
+  unset _LC_SAVE_
 }
 
 if [ ! "x${BASH_VERSION}" = "x"  ]; then
