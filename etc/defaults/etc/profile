@@ -29,8 +29,14 @@
 # software to override 'system' software.
 # Modifying these default path settings can be done in different ways.
 # To learn more about startup files, refer to your shell's man page.
-ORIGINAL_PATH="${PATH}"
-PATH="/usr/local/bin:/usr/bin"
+if [ "${ORIGINAL_PATH-null}" = "null" ]; then
+  ${ORIGINAL_PATH}="$PATH"
+fi
+if [ "${CYGWIN_NOWINPATH-null}" = "null" ];then
+  PATH="/usr/local/bin:/usr/bin:${PATH}"
+else
+  PATH="/usr/local/bin:/usr/bin"
+fi
 MANPATH="/usr/local/man:/usr/share/man:/usr/man:${MANPATH}"
 INFOPATH="/usr/local/info:/usr/share/info:/usr/info:${INFOPATH}"
 
