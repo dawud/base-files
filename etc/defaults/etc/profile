@@ -107,12 +107,19 @@ fi
 # Shell dependent settings
 profile_d ()
 {
-  _LC_SAVE_="{LC_ALL}"
+  _LC_SAVE_="{LC_ALL-null}"
   LC_ALL=C
-  for file in /etc/profile.d/*.$1); do
-    [ -e "${file}" ] && LC_ALL="${_LC_SAVE_}" . "${file}"
-  done
-  LC_ALL="{_LC_SAVE_}"
+  if [ "${_LC_SAVE_}" = "null" ]; then
+    for file in /etc/profile.d/*.$1); do
+      [ -e "${file}" ] && . "${file}"
+    done
+    unset LC_ALL
+  else
+    for file in /etc/profile.d/*.$1); do
+      [ -e "${file}" ] && LC_ALL="${_LC_SAVE_}" . "${file}"
+    done
+    LC_ALL="${_LC_SAVE_}"
+  fi
   unset file
   unset _LC_SAVE_
 }
