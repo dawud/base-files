@@ -29,8 +29,14 @@
 # software to override 'system' software.
 # Modifying these default path settings can be done in different ways.
 # To learn more about startup files, refer to your shell's man page.
-ORIGINAL_PATH="${PATH}"
-PATH="/usr/local/bin:/usr/bin"
+if [ "${ORIGINAL_PATH-null}" = "null" ]; then
+  ${ORIGINAL_PATH}="$PATH"
+fi
+if [ "${CYGWIN_NOWINPATH-null}" = "null" ];then
+  PATH="/usr/local/bin:/usr/bin:${PATH}"
+else
+  PATH="/usr/local/bin:/usr/bin"
+fi
 MANPATH="/usr/local/man:/usr/share/man:/usr/man:${MANPATH}"
 INFOPATH="/usr/local/info:/usr/share/info:/usr/info:${INFOPATH}"
 
@@ -101,35 +107,37 @@ fi
 # Shell dependent settings
 profile_d ()
 {
-  _LC_SAVE_="{LC_ALL}"
+  _LC_SAVE_="{LC_ALL-null}"
   LC_ALL=C
-  for file in /etc/profile.d/*.$1); do
-    [ -e "${file}" ] && LC_ALL="${_LC_SAVE_}" . "${file}"
-  done
-  LC_ALL="{_LC_SAVE_}"
+  if [ "${_LC_SAVE_}" = "null" ]; then
+    for file in /etc/profile.d/*.$1); do
+      [ -e "${file}" ] && . "${file}"
+    done
+    unset LC_ALL
+  else
+    for file in /etc/profile.d/*.$1); do
+      [ -e "${file}" ] && LC_ALL="${_LC_SAVE_}" . "${file}"
+    done
+    LC_ALL="${_LC_SAVE_}"
+  fi
   unset file
   unset _LC_SAVE_
 }
 
+HOSTNAME="$(/usr/bin/hostname)"
+profile_d sh
 if [ ! "x${BASH_VERSION}" = "x"  ]; then
-  HOSTNAME="$(/usr/bin/hostname)"
-  profile_d sh
   [ -f "/etc/bash.bashrc" ] && . "/etc/bash.bashrc"
 elif [ ! "x${KSH_VERSION}" = "x" ]; then
   typeset -l HOSTNAME="$(/usr/bin/hostname)"
-  profile_d sh
-  PS1=$(print '\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}\033[0m\n$ ')
+  [ "${PS1-null}" = "null" ] || PS1=$(print '\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}\033[0m\n$ ')
 elif [ ! "x${ZSH_VERSION}" = "x" ]; then
-  HOSTNAME="$(/usr/bin/hostname)"
+  # zsh is in shell compatibility mode here, so we probably shouldn't do this
   profile_d zsh
-  PS1='(%n@%m)[%h] %~ %% '
 elif [ ! "x${POSH_VERSION}" = "x" ]; then
-  HOSTNAME="$(/usr/bin/hostname)"
-  PS1="$ "
+  #[ "${PS1-null}" = "null" ] || PS1="$ "
 else 
-  HOSTNAME="$(/usr/bin/hostname)"
-  profile_d sh
-  PS1="$ "
+  #[ "${PS1-null}" = "null" ] || PS1="$ "
 fi
 
 export PATH MANPATH INFOPATH USER TMP TEMP PRINTER HOSTNAME PS1 SHELL tmp temp
