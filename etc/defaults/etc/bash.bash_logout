@@ -1,21 +1,32 @@
-# To the extent possible under law, the author(s) have dedicated all 
-# copyright and related and neighboring rights to this software to the 
-# public domain worldwide. This software is distributed without any warranty. 
-# You should have received a copy of the CC0 Public Domain Dedication along 
-# with this software. 
-# If not, see <http://creativecommons.org/publicdomain/zero/1.0/>. 
-
-# base-files version 4.1-2
-
-# /etc/bash.bash_logout: executed by bash(1) when login shell exits.
-
-# The latest version as installed by the Cygwin Setup program can
-# always be found at /etc/defaults/etc/bash.bash_logout
-
-# Modifying /etc/bash.bash_logout directly will prevent
-# setup from updating it.
-
-# System-wide bashrc file
+#   Copyright information
+#
+#       Copyright (C) 2010-2012 David Sastre Medina <d.sastre.medina@gmail.com>
+#
+#   License
+#
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 3 of the License, or
+#       (at your option) any later version.
+#
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#       GNU General Public License for more details.
+#
+#       You should have received a copy of the GNU General Public License
+#       along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Description
+#
+#       base-files version 4.1-2
+#
+#       Executed by bash(1) for interactive shells.
+#
+#       The latest version as installed by the Cygwin Setup program can
+#       always be found at /etc/defaults/etc/bash.bashrc
+#
+#       Modifying this file directly will prevent updating it automatically.
 
 # when leaving the console clear the screen to increase privacy
 if [ "$SHLVL" = 1 ]; then
